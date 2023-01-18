@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-1</title>
+</head>
+<body>
+    <script>
+        const questionHight = 'Дізнаємось об\'єм циліндра\nДля початку яка висота циліндра?';
+        const heightCM = prompt(questionHight);
+        const questionDiameter = 'Дізнаємось об\'єм циліндра\nДалі його діаметр?';
+        const diameterCM = prompt(questionDiameter);
+        const volume = heightCM * diameterCM;
+        let answer_1 = `Його діаметер - ${ volume }см2`;
+        alert(answer_1);
+
+        const questionName = 'Як тебе звати?';
+        const name = prompt(questionName);
+        let answer_2 = `"Привіт, ${ name }!"`;
+        alert(answer_2);
+
+        const questionHight_1 = 'Яка довжина сторони квадрата?';
+        const heightCm = prompt(questionHight_1);
+        const perimeter = heightCm * 4;
+        let answer_3 = `Периметр = ${ perimeter }см`;
+        alert(answer_3);
+
+        const questionLength = 'Яка відстань між двома містами в кілометрах?';
+        const lengthKm = prompt(questionLength);
+        const questionTime = 'За скільки годин ви хочете дістатися з одного міста в інше?';
+        const timeHour = prompt(questionTime);
+        const speed = lengthKm / timeHour;
+        let answer_4 = `Вам потрібно рухатись з швидкістю - ${ speed }км/год.`;
+        alert(answer_4);
+
+        const question = 'Введіть число';
+        let x = prompt(question);
+        let y = 0;
+            for(; x; x = Math.floor(x / 10)) {
+            y *= 10;
+            y += x % 10;
+        }
+        alert(y)
+    
+        const questionTemperature = 'Введіть значення в Цельсіях?';
+        const celsi = prompt(questionTemperature);
+        const fahrenheit = Number(celsi * 1.8 + 32);
+        let answer_5 = `${ fahrenheit }F`;
+        alert(answer_5);  
+    
+        const enterMassage = "Введіть тризначне число";
+        const row = prompt(enterMassage);
+        const d3 = row % 10;
+        const d2 = (row - d3)%100;
+        const d1 = (row - d2 - d3)/100;
+        const answer_6 = (d3 * 100 + d2 + d1);
+        alert(answer_6);
+                    
+        const enterMassage_1 = "Введіть число #ffffff"
+        const hex2rgb = prompt(enterMassage_1);
+        const red = Number.parseInt(hex2rgb[1]+hex2rgb[2], 16);
+        const green = Number.parseInt(hex2rgb[3]+hex2rgb[4], 16);
+        const blue = Number.parseInt(hex2rgb[5]+hex2rgb[6], 16);
+        alert('rgb(' + red + ',' + green + ',' + blue + ')')
+               
+    </script>
+</body>
+</html>
