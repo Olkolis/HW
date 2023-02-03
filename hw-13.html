@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //amount of seats - NOS
+        const TOTAL_AOS = 54;
+        const AOS_LEFT = 36;
+        const AOS_RIGHT = 18;
+        const AOS_IN_THE_COUPE = 4;
+        const AOS_IN_SIDE = 2;
+        // Прохання дати коментар щодо назв констант
+
+        const questionTicket = prompt("Введіть номер квитка",'');
+
+        let coupe;
+        let positionSeats;
+        let seats;
+        
+        function sideSits() {
+            const coupe = [0, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+            const calculation = Math.ceil((questionTicket - AOS_LEFT) / AOS_IN_SIDE);
+            const nomberCoupe = coupe [calculation];
+
+            return nomberCoupe;
+        }      
+        // Номер купе
+        if (questionTicket <= AOS_LEFT) {
+            cou = Math.ceil(questionTicket / AOS_IN_THE_COUPE);
+            coupe = `Ваше купе номер ${ cou }`
+        } else if (questionTicket > AOS_LEFT) {
+            coupe = `Ваше купе номер ${ sideSits() }`;
+        }
+        // Полиця
+        if (questionTicket % 2 == 0) {
+            positionSeats = 'Верхня полиця'; 
+        } else {
+            positionSeats ='Нижня полиця'; 
+        } 
+        // позиціонування місця
+        if (questionTicket >= AOS_LEFT) {
+            seats = 'Бічне місце';
+        }
+
+        alert (`${ coupe } \n${ positionSeats } \n${ seats }`);
+        
+    </script>
+</body>
+</html>

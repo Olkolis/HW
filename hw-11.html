@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    const question = prompt('Введіть логін',"");
+    
+    if (question == "Admin"){
+        const password = prompt('Введіть пароль',"");
+
+        if (password == "Господар"){
+        alert("Ласкаво просимо!");
+        } else if (question == ""||question == null){
+        alert("Скасовано");
+        } else {
+        alert("Неправильний пароль");
+        }
+    } else if (question == ""||question == null){
+        alert("Скасовано");
+    } else {
+        alert("Я вас не знаю");
+        const question = prompt('Введіть логін',"");
+    }
+    //!Як зробити так щоб повертався prompt('Введіть логін',""); коли логін не Admin?//
+
+    // калькулятор_1
+    function calc() { 
+      let num1 = prompt("Введіть перше число",'');
+      let num2 = prompt("Введіть друге число",'');
+      let method = prompt("Введіть дію з числами",'');
+
+      switch (method) {
+        case "+":
+          return parseFloat(num1) + parseFloat(num2);
+        case "-":
+          return num1 - num2;
+        case "/":
+          return num1 / num2;
+        case "*":
+          return num1 * num2; 
+      } 
+    } 
+    alert(calc());
+
+    // калькулятор_2
+    function interface() {
+        let answer = calc(12, 4, '+');
+        console.log(answer);
+        answer = calc(1, 4, '-');
+        console.log(answer);
+        answer = calc(10, 3, '/');
+        console.log(answer.toFixed(2));
+        answer = calc(1.2, 3, '*');
+        console.log(answer.toFixed(1));
+    }
+
+    function calc(num1, num2, method) {
+        switch (method){
+            case '/':{
+                return num1 / num2;
+            }
+            case '*':{
+                return num1 * num2;
+            }
+            case '+':{
+                return parseFloat(num1) + parseFloat(num2);
+            }
+            case '-':{
+                return num1 - num2;
+            }
+            case '':{
+                return "Щось пішло не так";
+            }
+        }
+    }
+    interface()
+    
+    // Константи Васі
+    const LATES_COST = 20;
+    const LATES_EVERY_THIRD = 3;
+    const LATES_FREE = 2;
+    const INCOME_PER_HUNDRED_ROWS = 50;
+    const AMOUNT_ROWS = 100;
+
+    //menu_1.1
+    function row() {
+        const pay = prompt('Бажаний дохід Васі','');
+        const lateness = prompt('Кількість запізнень','');
+         
+        return (((+pay + lateness * LATES_COST) - (+pay+lateness * LATES_COST) % INCOME_PER_HUNDRED_ROWS) / INCOME_PER_HUNDRED_ROWS + 1) * AMOUNT_ROWS;
+    }
+    alert(row());
+
+    // menu_1.2
+    function calcLines(desiredIncome, latesCount) {
+        const latesMoney = parseInt(latesCount / LATES_EVERY_THIRD) * LATES_COST;
+        const pureSalary = desiredIncome + latesMoney;
+        const lines = Math.ceil(pureSalary / INCOME_PER_HUNDRED_ROWS) * AMOUNT_ROWS;
+
+        return lines;
+    }
+    console.log(calcLines(29, 4));
+
+    // menu_2
+    function calcLates(amountLines, desiredIncome) {
+        const linesMoney = parseInt(amountLines / AMOUNT_ROWS) * INCOME_PER_HUNDRED_ROWS;
+        const latesMoney = linesMoney - desiredIncome;
+        if (latesMoney < 0){
+            return LATES_FREE;
+        }
+        const amountLates = parseInt(latesMoney / LATES_COST) * LATES_EVERY_THIRD + LATES_FREE;
+
+        return amountLates;
+    }
+    console.log(calcLates(120, 100));
+
+    // menu_3
+    function calcMoney(amountLines, amountLates) {
+        const latesCount = parseInt(amountLates / LATES_EVERY_THIRD) * LATES_COST;
+        const linesMoney = parseInt(amountLines / AMOUNT_ROWS) * INCOME_PER_HUNDRED_ROWS;
+        const desiredIncome = linesMoney - latesCount;
+        if (desiredIncome < 0) {
+            return "'Ти забагато запізнюєшся тому вибач ти без грошей'"
+        }
+        return desiredIncome;
+    }
+    console.log(calcMoney(121, 10))
+
+    // Реалізація меню
+    function Vasia() {
+        const text0 = `Вибір опції:
+            1 - Розрахунок рядків
+            2 - Розрахунок запізнень
+            3 - Розрахунок зарплатні`;
+
+        const textLines = 'Введіть рядки';
+        const textLates = 'Введіть запізнення';
+        const textSalery = 'Введіть дохід';
+
+        let text1;
+        let text2;
+        let func;
+        let textMessage;
+
+        const option = parseInt(prompt(text0, 1));
+        
+        switch(option) {
+            case 1:{
+                text1 = textSalery;
+                text2 = textLates;
+                func = calcLines;
+                break 
+            }
+            case 2:{
+                text1 = textLines;
+                text2 = textSalery;
+                func = calcLates;
+                break 
+            }
+            case 3:{
+                text1 = textLines;
+                text2 = textLates;
+                func = calcMoney;
+                break 
+            }
+        }
+        const value_1 = prompt(text1,'');
+        const value_2 = prompt(text2,'');
+        const answer = func(value_1, value_2);
+
+        if (option == 1) {
+            alert(`Потрібно написати ${ answer } рядків`);
+        } else if(option == 2) {
+            alert(`Можна зробити ${ answer } запізнення(-нь)`);
+        } else if(option == 3) {
+            alert(`Вася отримає ${ answer } баксів`);
+        }
+    }
+    Vasia()
+    </script>
